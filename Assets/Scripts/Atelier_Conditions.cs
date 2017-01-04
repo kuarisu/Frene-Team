@@ -593,8 +593,90 @@ public class Atelier_Conditions : MonoBehaviour {
     //Check Sequence
     IEnumerator CheckSequenceColor()
     {
-        m_CurrentTime += 1 * Time.deltaTime;
-        yield return new WaitForEndOfFrame();
+
+        int _i = 0;
+        yield return null;
+        switch (m_Team)
+        {
+            case Team.Team_One:
+                while (m_CurrentTime < m_MaxTime)
+                {
+
+                    foreach (GameObject Button in Gamemanager_ButtonManager.Instance.m_TeamOne)
+                    {
+                        Debug.Log(Button.GetComponent<Buttons_Propriety>().m_IsPressed);
+                        Debug.Log(_i);
+                        if (_i <= m_SquenceConditionsColor.Count - 1)
+                        {
+                            if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonColor == m_SquenceConditionsColor[_i])
+                            {
+                                Debug.Log("hello");
+                                _i++;
+                            }
+                            else if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonColor != m_SquenceConditionsColor[_i])
+                            {
+                                _i = 0;
+                            }
+                        }
+                        else
+                        {
+                            Debug.Log(m_iT1);
+                            m_iT1++;
+                            m_RightOrder = false;
+                            m_TimeToEnd = m_CurrentTime;
+                            m_MaxTime = m_CurrentTime;
+                        }
+
+                        m_CurrentTime += 1 * Time.deltaTime;
+                        yield return new WaitForEndOfFrame();
+
+                    }
+                    m_CurrentTime += 1 * Time.deltaTime;
+                    yield return new WaitForEndOfFrame();
+                }
+                m_UsingSequence = false;
+                break;
+            case Team.Team_Two:
+
+                while (m_CurrentTime < m_MaxTime)
+                {
+
+                    foreach (GameObject Button in Gamemanager_ButtonManager.Instance.m_TeamTwo)
+                    {
+                        Debug.Log(Button.GetComponent<Buttons_Propriety>().m_IsPressed);
+                        Debug.Log(_i);
+                        if (_i <= m_SquenceConditionsColor.Count - 1)
+                        {
+                            Debug.Log(Button.GetComponent<Buttons_Propriety>().m_ButtonNumber);
+                            if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonColor == m_SquenceConditionsColor[_i])
+                            {
+                                Debug.Log("hello");
+                                _i++;
+                            }
+                            else if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonColor != m_SquenceConditionsColor[_i])
+                            {
+                                _i = 0;
+                            }
+                        }
+                        else
+                        {
+                            Debug.Log(m_iT2);
+                            m_iT2++;
+                            m_RightOrder = false;
+                            m_TimeToEnd = m_CurrentTime;
+                            m_MaxTime = m_CurrentTime;
+                        }
+
+                        m_CurrentTime += 1 * Time.deltaTime;
+                        yield return new WaitForEndOfFrame();
+
+                    }
+                    m_CurrentTime += 1 * Time.deltaTime;
+                    yield return new WaitForEndOfFrame();
+                }
+                m_UsingSequence = false;
+                break;
+        }
     }
 
     IEnumerator CheckSequenceNumber()
