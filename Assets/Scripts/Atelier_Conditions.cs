@@ -357,11 +357,10 @@ public class Atelier_Conditions : MonoBehaviour {
                 m_TimeToEnd = m_CurrentTime;
             }
 
-            m_CurrentTime += 1 * Time.deltaTime;
+            m_CurrentTime +=Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
         m_UsingColor = false;
-		Debug.Log ("helolololo");
 		yield return null;
     }
 
@@ -424,7 +423,7 @@ public class Atelier_Conditions : MonoBehaviour {
                 m_TimeToEnd = m_CurrentTime;
             }
 
-            m_CurrentTime += 1 * Time.deltaTime;
+            m_CurrentTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
         m_UsingColor = false;
@@ -513,7 +512,7 @@ public class Atelier_Conditions : MonoBehaviour {
 
 
 
-			m_CurrentTime += 1 * Time.deltaTime;
+			m_CurrentTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
         m_UsingInteraction = false;
@@ -524,7 +523,7 @@ public class Atelier_Conditions : MonoBehaviour {
         while (m_CurrentTime < m_MaxTime)
         {
 
-            m_CurrentTime += 1 * Time.deltaTime;
+            m_CurrentTime +=Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
         m_UsingInteraction = false;
@@ -541,7 +540,7 @@ public class Atelier_Conditions : MonoBehaviour {
 
 
 
-            m_CurrentTime += 1 * Time.deltaTime;
+            m_CurrentTime +=Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
         m_UsingInteraction = false;
@@ -599,7 +598,7 @@ public class Atelier_Conditions : MonoBehaviour {
             {
                 m_TimeToEnd = m_CurrentTime;
             }
-            m_CurrentTime += 1 * Time.deltaTime;
+            m_CurrentTime +=Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
         m_UsingNumber = false;
@@ -662,7 +661,7 @@ public class Atelier_Conditions : MonoBehaviour {
             }
 
 
-            m_CurrentTime += 1 * Time.deltaTime;
+            m_CurrentTime +=Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
         m_UsingNumber = false;
@@ -705,11 +704,7 @@ public class Atelier_Conditions : MonoBehaviour {
                             m_MaxTime = m_CurrentTime;
                         }
 
-                        m_CurrentTime += 1 * Time.deltaTime;
-                        yield return new WaitForEndOfFrame();
-
                     }
-                    m_CurrentTime += 1 * Time.deltaTime;
                     yield return new WaitForEndOfFrame();
                 }
                 m_UsingSequence = false;
@@ -743,11 +738,7 @@ public class Atelier_Conditions : MonoBehaviour {
                             m_MaxTime = m_CurrentTime;
                         }
 
-                        m_CurrentTime += 1 * Time.deltaTime;
-                        yield return new WaitForEndOfFrame();
-
                     }
-                    m_CurrentTime += 1 * Time.deltaTime;
                     yield return new WaitForEndOfFrame();
                 }
                 m_UsingSequence = false;
@@ -760,8 +751,6 @@ public class Atelier_Conditions : MonoBehaviour {
 
 				foreach (GameObject Button in Gamemanager_ButtonManager.Instance.m_GlobalListOfButton)
 				{
-					Debug.Log (_it1);
-					Debug.Log (_it2);
 					if (_it1 <= m_SquenceConditionsColor.Count-1)
 					{
 						if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonColor == m_SquenceConditionsColor[_it1] && Button.GetComponent<Buttons_Propriety>().m_NumberOfTeam == 1)
@@ -790,8 +779,6 @@ public class Atelier_Conditions : MonoBehaviour {
 						}
 					}
 
-					m_CurrentTime += 1 * Time.deltaTime;
-					yield return new WaitForEndOfFrame();
 
 				}
 				if (_it2 == m_SquenceConditionsColor.Count)
@@ -809,7 +796,6 @@ public class Atelier_Conditions : MonoBehaviour {
 					m_MaxTime = m_CurrentTime;
 				}
 
-				m_CurrentTime += 1 * Time.deltaTime;
 				yield return new WaitForEndOfFrame();
 			}
 			m_UsingSequence = false;
@@ -856,11 +842,7 @@ public class Atelier_Conditions : MonoBehaviour {
                             m_MaxTime = m_CurrentTime;
                         }
 
-                        m_CurrentTime += 1 * Time.deltaTime;
-                        yield return new WaitForEndOfFrame();
-
                     }
-                    m_CurrentTime += 1 * Time.deltaTime;
                     yield return new WaitForEndOfFrame();
                 }
                 m_UsingSequence = false;
@@ -895,11 +877,7 @@ public class Atelier_Conditions : MonoBehaviour {
                             m_MaxTime = m_CurrentTime;
                         }
 
-                        m_CurrentTime += 1 * Time.deltaTime;
-                        yield return new WaitForEndOfFrame();
-
                     }
-                    m_CurrentTime += 1 * Time.deltaTime;
                     yield return new WaitForEndOfFrame();
                 }
                 m_UsingSequence = false;
@@ -913,8 +891,6 @@ public class Atelier_Conditions : MonoBehaviour {
 
 				foreach (GameObject Button in Gamemanager_ButtonManager.Instance.m_GlobalListOfButton)
 				{
-					Debug.Log (_it1);
-					Debug.Log (_it2);
 
 					if (_it1 <= m_SquenceConditionsNb.Count-1)
 					{
@@ -944,9 +920,6 @@ public class Atelier_Conditions : MonoBehaviour {
 							Button.GetComponent<Buttons_Propriety> ().m_IsPressed = false;
 						}
 					}
-					
-					m_CurrentTime += 1 * Time.deltaTime;
-					yield return new WaitForEndOfFrame();
 
 				}
 				if (_it1 == m_SquenceConditionsNb.Count)
@@ -965,7 +938,6 @@ public class Atelier_Conditions : MonoBehaviour {
 					m_MaxTime = m_CurrentTime;
 				}
 
-				m_CurrentTime += 1 * Time.deltaTime;
 				yield return new WaitForEndOfFrame();
 			}
 			m_UsingSequence = false;
