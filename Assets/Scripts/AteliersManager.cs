@@ -65,12 +65,8 @@ public class AteliersManager : MonoBehaviour {
 		}
 	
 	//	ateliersList[randomInt].gameObject.SetActive (true);
-		GameObject instance = Instantiate(ateliersList[randomInt].gameObject);
-		instance.SetActive (true);
+		ateliersList[randomInt].gameObject.SetActive(true);
 
-		instance.transform.SetParent (gameObject.transform);
-		instance.transform.localPosition = new Vector3 (0f, 0f, 0f);
-		instance.transform.localScale = new Vector3 (1f, 1f, 1f);
 
 
 

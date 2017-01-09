@@ -135,7 +135,6 @@ public class Atelier_Conditions : MonoBehaviour {
     bool m_Team1 = false;
     bool m_Team2 = false;
 
-    bool m_RightOrder;
 
 
     void Start()
@@ -247,20 +246,49 @@ public class Atelier_Conditions : MonoBehaviour {
         if (Input.GetKeyUp("b") && !m_KeyB && m_Team1)
             m_KeyB = true;
 
+        //if (Input.GetKeyDown("b") && m_KeyB == false)
+        //    m_KeyB = true;
+
         if (Input.GetKeyUp("c") && !m_KeyC && m_Team1)
             m_KeyC = true;
+
+        if (Input.GetKeyDown("c") && m_Team1)
+        {
+
+        }
 
         if (Input.GetKeyUp("d") && !m_KeyD && m_Team1)
             m_KeyD = true;
 
+        if (Input.GetKeyDown("d") && m_Team1)
+        {
+
+        }
+
         if (Input.GetKeyUp("w") && !m_KeyW && m_Team2)
             m_KeyW = true;
+
+        if (Input.GetKeyDown("w") && m_Team2)
+        {
+
+        }
 
         if (Input.GetKeyUp("x") && !m_KeyX && m_Team2)
             m_KeyX = true;
 
+        if (Input.GetKeyDown("x") && m_Team2)
+        {
+;
+        }
+
         if (Input.GetKeyUp("y") && !m_KeyY && m_Team2)
             m_KeyY = true;
+
+
+        if (Input.GetKeyDown("y") && m_Team2)
+        {
+
+        }
 
     }
 
@@ -315,7 +343,6 @@ public class Atelier_Conditions : MonoBehaviour {
     {
         int _iT1 = 0;
         int _iT2 = 0;
-
         while (m_CurrentTime < m_MaxTime)
         {
             //if Right Input
@@ -361,8 +388,6 @@ public class Atelier_Conditions : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
         m_UsingColor = false;
-		Debug.Log ("helolololo");
-		yield return null;
     }
 
     IEnumerator CheckBlue()
@@ -433,87 +458,10 @@ public class Atelier_Conditions : MonoBehaviour {
     //Check Input
     IEnumerator CheckPressOne()
     {
-		bool _BPressedOnce = false;
-		bool _CPressedOnce = false;
-		bool _DPressedOnce = false;
-		bool _WPressedOnce = false;
-		bool _XPressedOnce = false;
-		bool _YPressedOnce = false;
-
-
-
         while (m_CurrentTime < m_MaxTime)
         {
-			if (m_KeyB && !_BPressedOnce)
-			{
-				_BPressedOnce = true;
-				m_ScoreTeam1++;
-				m_KeyB = false;
-			}
-			else if (m_KeyB && _BPressedOnce)
-			{
-				m_ScoreTeam1--;
-			}	
 
-			if (m_KeyC && !_CPressedOnce)
-			{
-				_CPressedOnce = true;
-				m_ScoreTeam1++;
-				m_KeyC = false;
-			}
-			else if (m_KeyC && _CPressedOnce)
-			{
-				m_ScoreTeam1--;
-			}	
-
-			if (m_KeyD && !_DPressedOnce)
-			{
-				_DPressedOnce = true;
-				m_ScoreTeam1++;
-				m_KeyD = false;
-			}
-			else if (m_KeyD && _DPressedOnce)
-			{
-				m_ScoreTeam1--;
-			}	
-
-
-			if (m_KeyW && !_WPressedOnce)
-			{
-				_WPressedOnce = true;
-				m_ScoreTeam2++;
-				m_KeyW = false;
-			}
-			else if (m_KeyW && _WPressedOnce)
-			{
-				m_ScoreTeam2--;
-			}
-
-			if (m_KeyX && !_XPressedOnce)
-			{
-				_XPressedOnce = true;
-				m_ScoreTeam2++;
-				m_KeyX = false;
-			}
-			else if (m_KeyX && _XPressedOnce)
-			{
-				m_ScoreTeam2--;
-			}	
-
-			if (m_KeyY && !_YPressedOnce)
-			{
-				_YPressedOnce = true;
-				m_ScoreTeam2++;
-				m_KeyY = false;
-			}
-			else if (m_KeyY && _YPressedOnce)
-			{
-				m_ScoreTeam2--;
-			}	
-
-
-
-			m_CurrentTime += 1 * Time.deltaTime;
+            m_CurrentTime += 1 * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
         m_UsingInteraction = false;
@@ -528,6 +476,7 @@ public class Atelier_Conditions : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
         m_UsingInteraction = false;
+        m_CurrentTime = 0;
     }
 
     IEnumerator CheckSpam()
@@ -576,18 +525,18 @@ public class Atelier_Conditions : MonoBehaviour {
                 yield return new WaitForEndOfFrame();
                 m_KeyW = false;
             }
-            if (m_KeyX)
+            if (m_KeyY)
             {
                 m_ScoreTeam2 += 1 / m_CurrentTime;
                 m_iT2++;
                 yield return new WaitForEndOfFrame();
-                m_KeyX = false;
+                m_KeyY = false;
             }
-            if (m_KeyY)
+            if (m_KeyX)
             {
                 m_ScoreTeam2--;
                 yield return new WaitForEndOfFrame();
-                m_KeyY = false;
+                m_KeyX = false;
             }
 
             if (_iT1 >= 1)
@@ -611,12 +560,12 @@ public class Atelier_Conditions : MonoBehaviour {
         int _iT2 = 0;
         while (m_CurrentTime < m_MaxTime)
         {
-            if (m_KeyB)
+            if (m_KeyC)
             {
                 m_ScoreTeam1 += 1 / m_CurrentTime;
                 m_iT1++;
                 yield return new WaitForEndOfFrame();
-                m_KeyB = false;
+                m_KeyC = false;
             }
 
             if (m_KeyD)
@@ -635,7 +584,7 @@ public class Atelier_Conditions : MonoBehaviour {
 
             if (m_KeyX)
             {
-				m_ScoreTeam2--;
+                m_ScoreTeam2 += 1 / m_CurrentTime;
                 m_iT2++;
                 yield return new WaitForEndOfFrame();
                 m_KeyX = false;
@@ -643,7 +592,7 @@ public class Atelier_Conditions : MonoBehaviour {
 
             if (m_KeyW || m_KeyY)
             {
-				m_ScoreTeam2 += 1 / m_CurrentTime;
+                m_ScoreTeam2 -= 1;
                 yield return new WaitForEndOfFrame();
                 m_KeyW = false;
                 m_KeyY = false;
@@ -671,349 +620,70 @@ public class Atelier_Conditions : MonoBehaviour {
     //Check Sequence
     IEnumerator CheckSequenceColor()
     {
-
-        int _i = 0;
-		int _it1 = 0;
-		int _it2 = 0;
-
-        switch (m_Team)
+        while (m_CurrentTime < m_MaxTime)
         {
-            case Team.Team_One:
-                while (m_CurrentTime < m_MaxTime)
-                {
-                    foreach (GameObject Button in Gamemanager_ButtonManager.Instance.m_TeamOne)
-                    {
 
-					if (_i <= m_SquenceConditionsColor.Count-1)
-                        {
-                            if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonColor == m_SquenceConditionsColor[_i])
-                            {
-                                _i++;
-                            }
-                            else if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonColor != m_SquenceConditionsColor[_i])
-                            {
-                                _i = 0;
-                            }
-                        }
-					else if (_i == m_SquenceConditionsColor.Count-1)
-                        {
-						Debug.Log ("hehehehehehehe");
-                            m_iT1++;
-                            m_RightOrder = false;
-							m_ScoreTeam1 ++;
-                            m_TimeToEnd = m_CurrentTime;
-                            m_MaxTime = m_CurrentTime;
-                        }
-
-                        m_CurrentTime += 1 * Time.deltaTime;
-                        yield return new WaitForEndOfFrame();
-
-                    }
-                    m_CurrentTime += 1 * Time.deltaTime;
-                    yield return new WaitForEndOfFrame();
-                }
-                m_UsingSequence = false;
-                break;
-            case Team.Team_Two:
-
-                while (m_CurrentTime < m_MaxTime)
-                {
-
-                    foreach (GameObject Button in Gamemanager_ButtonManager.Instance.m_TeamTwo)
-                    {
-					if (_i <= m_SquenceConditionsColor.Count-1)
-                        {
-                            if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonColor == m_SquenceConditionsColor[_i])
-                            {
-
-                                _i++;
-                            }
-                            else if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonColor != m_SquenceConditionsColor[_i])
-                            {
-                                _i = 0;
-                            }
-                        }
-					if (_i == m_SquenceConditionsColor.Count-1)
-                        {
-						Debug.Log ("hehehehehehehe");
-                            m_iT2++;
-                            m_RightOrder = false;
-							m_ScoreTeam2 ++;
-                            m_TimeToEnd = m_CurrentTime;
-                            m_MaxTime = m_CurrentTime;
-                        }
-
-                        m_CurrentTime += 1 * Time.deltaTime;
-                        yield return new WaitForEndOfFrame();
-
-                    }
-                    m_CurrentTime += 1 * Time.deltaTime;
-                    yield return new WaitForEndOfFrame();
-                }
-                m_UsingSequence = false;
-                break;
-
-		case Team.Both:
-
-			while (m_CurrentTime < m_MaxTime)
-			{
-
-				foreach (GameObject Button in Gamemanager_ButtonManager.Instance.m_GlobalListOfButton)
-				{
-					Debug.Log (_it1);
-					Debug.Log (_it2);
-					if (_it1 <= m_SquenceConditionsColor.Count-1)
-					{
-						if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonColor == m_SquenceConditionsColor[_it1] && Button.GetComponent<Buttons_Propriety>().m_NumberOfTeam == 1)
-						{
-							_it1++;
-							Button.GetComponent<Buttons_Propriety> ().m_IsPressed = false;
-						}
-						else if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonColor != m_SquenceConditionsColor[_it1] && Button.GetComponent<Buttons_Propriety>().m_NumberOfTeam == 1)
-						{
-							_it1 = 0;
-							Button.GetComponent<Buttons_Propriety> ().m_IsPressed = false;
-						}
-					}
-
-					if (_it2 <= m_SquenceConditionsColor.Count-1)
-					{
-						if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonColor == m_SquenceConditionsColor[_it2] && Button.GetComponent<Buttons_Propriety>().m_NumberOfTeam == 2)
-						{
-							_it2++;
-							Button.GetComponent<Buttons_Propriety> ().m_IsPressed = false;
-						}
-						else if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonColor != m_SquenceConditionsColor[_it2] && Button.GetComponent<Buttons_Propriety>().m_NumberOfTeam == 2)
-						{
-							_it2 = 0;
-							Button.GetComponent<Buttons_Propriety> ().m_IsPressed = false;
-						}
-					}
-
-					m_CurrentTime += 1 * Time.deltaTime;
-					yield return new WaitForEndOfFrame();
-
-				}
-				if (_it2 == m_SquenceConditionsColor.Count)
-				{
-					m_RightOrder = false;
-					m_ScoreTeam2 ++;
-					m_TimeToEnd = m_CurrentTime;
-					m_MaxTime = m_CurrentTime;
-				}
-				if (_it1 == m_SquenceConditionsColor.Count)
-				{
-					m_RightOrder = false;
-					m_ScoreTeam1 ++;
-					m_TimeToEnd = m_CurrentTime;
-					m_MaxTime = m_CurrentTime;
-				}
-
-				m_CurrentTime += 1 * Time.deltaTime;
-				yield return new WaitForEndOfFrame();
-			}
-			m_UsingSequence = false;
-			break;
+            m_CurrentTime += 1 * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
         }
+
     }
 
     IEnumerator CheckSequenceNumber()
     {
-		int _i = 0;
-		int _it1 = 0;
-		int _it2 = 0;
-
-        yield return null;
-        switch (m_Team)
+        while (m_CurrentTime < m_MaxTime)
         {
-            case Team.Team_One:
-                while (m_CurrentTime < m_MaxTime)
-                {
 
-                    foreach (GameObject Button in Gamemanager_ButtonManager.Instance.m_TeamOne)
-                    {
-
-
-					if (_i <= m_SquenceConditionsNb.Count-1)
-                        {
-
-                            if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonNumber == m_SquenceConditionsNb[_i])
-                            {
-
-                                _i++;
-                            }
-                            else if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonNumber != m_SquenceConditionsNb[_i])
-                            {
-                                _i = 0;
-                            }
-                        }
-					else if (_i <= m_SquenceConditionsColor.Count-1)
-                        {
-						Debug.Log ("hehehehehehehe");
-							m_ScoreTeam1 ++;
-                            m_RightOrder = false;
-                            m_TimeToEnd = m_CurrentTime;
-                            m_MaxTime = m_CurrentTime;
-                        }
-
-                        m_CurrentTime += 1 * Time.deltaTime;
-                        yield return new WaitForEndOfFrame();
-
-                    }
-                    m_CurrentTime += 1 * Time.deltaTime;
-                    yield return new WaitForEndOfFrame();
-                }
-                m_UsingSequence = false;
-                break;
-            case Team.Team_Two:
-
-                while (m_CurrentTime < m_MaxTime)
-                {
-
-                    foreach (GameObject Button in Gamemanager_ButtonManager.Instance.m_TeamTwo)
-                    {
-
-
-					if (_i <= m_SquenceConditionsNb.Count-1)
-                        {
-
-                            if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonNumber == m_SquenceConditionsNb[_i])
-                            {
-
-                                _i++;
-                            }
-                            else if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonNumber != m_SquenceConditionsNb[_i])
-                            {
-                                _i = 0;
-                            }
-                        }
-						else if (_i <= m_SquenceConditionsColor.Count-1)
-                        {
-                            m_RightOrder = false;
-							m_ScoreTeam2 ++;
-                            m_TimeToEnd = m_CurrentTime;
-                            m_MaxTime = m_CurrentTime;
-                        }
-
-                        m_CurrentTime += 1 * Time.deltaTime;
-                        yield return new WaitForEndOfFrame();
-
-                    }
-                    m_CurrentTime += 1 * Time.deltaTime;
-                    yield return new WaitForEndOfFrame();
-                }
-                m_UsingSequence = false;
-                break;
-
-
-		case Team.Both:
-
-			while (m_CurrentTime < m_MaxTime)
-			{
-
-				foreach (GameObject Button in Gamemanager_ButtonManager.Instance.m_GlobalListOfButton)
-				{
-					Debug.Log (_it1);
-					Debug.Log (_it2);
-
-					if (_it1 <= m_SquenceConditionsNb.Count-1)
-					{
-						if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonNumber == m_SquenceConditionsNb[_it1] && Button.GetComponent<Buttons_Propriety>().m_NumberOfTeam == 1)
-						{
-							_it1++;
-							Button.GetComponent<Buttons_Propriety> ().m_IsPressed = false;
-						}
-						else if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonNumber != m_SquenceConditionsNb[_it1] && Button.GetComponent<Buttons_Propriety>().m_NumberOfTeam == 1)
-						{
-							_it1 = 0;
-							Button.GetComponent<Buttons_Propriety> ().m_IsPressed = false;
-						}
-					}
-
-					if (_it2 <= m_SquenceConditionsNb.Count-1)
-					{
-						
-						if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonNumber == m_SquenceConditionsNb[_it2] && Button.GetComponent<Buttons_Propriety>().m_NumberOfTeam == 2)
-						{
-							_it2++;
-							Button.GetComponent<Buttons_Propriety> ().m_IsPressed = false;
-						}
-						else if (Button.GetComponent<Buttons_Propriety>().m_IsPressed && Button.GetComponent<Buttons_Propriety>().m_ButtonNumber != m_SquenceConditionsNb[_it2] && Button.GetComponent<Buttons_Propriety>().m_NumberOfTeam == 2)
-						{
-							_it2 = 0;
-							Button.GetComponent<Buttons_Propriety> ().m_IsPressed = false;
-						}
-					}
-					
-					m_CurrentTime += 1 * Time.deltaTime;
-					yield return new WaitForEndOfFrame();
-
-				}
-				if (_it1 == m_SquenceConditionsNb.Count)
-				{
-					m_RightOrder = false;
-					m_ScoreTeam1++;
-					m_TimeToEnd = m_CurrentTime;
-					m_MaxTime = m_CurrentTime;
-				}
-
-				if (_it2 == m_SquenceConditionsNb.Count)
-				{
-					m_RightOrder = false;
-					m_ScoreTeam2 ++;
-					m_TimeToEnd = m_CurrentTime;
-					m_MaxTime = m_CurrentTime;
-				}
-
-				m_CurrentTime += 1 * Time.deltaTime;
-				yield return new WaitForEndOfFrame();
-			}
-			m_UsingSequence = false;
-			break;
-
+            m_CurrentTime += 1 * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
         }
     }
 
 
     IEnumerator CheckEndAtelier()
     {
-		
         while (true)
         {
+
             if (m_UsingColor == false && m_UsingInteraction == false && m_UsingNumber == false && m_UsingSequence == false)
             {
                 m_GainPoints = (int) Mathf.Round(m_GainPoints / m_CurrentTime); 
-
-				CheckScore();
-			
                 yield break;
-            } 
-			if (m_CurrentTime > m_MaxTime)
-			{
-				CheckScore();
-			}
+            }
                 
-		
+
             yield return new WaitForEndOfFrame();
         }
     }
 
- 
-void CheckScore()
-{
-	if(m_ScoreTeam1 > m_ScoreTeam2)
-	{
-		//Global Score Team 1 += m_ScoreGain
-			FindObjectOfType<ScoreManager>().addScore("red", m_GainPoints);
-	}
-	else if (m_ScoreTeam1 < m_ScoreTeam2)
-	{
-		//Global Score Team 2 += m_ScoreGain
-			FindObjectOfType<ScoreManager>().addScore("blue", m_GainPoints);
-	}
+    void CheckScore()
+    {
+        if (m_Team1 && m_Team2)
+        {
+            if (m_ScoreTeam1 > m_ScoreTeam2)
+            {
+                //Global Score Team 1 += m_ScoreGain
+            }
+            else if (m_ScoreTeam1 < m_ScoreTeam2)
+            {
+                //Global Score Team 2 += m_ScoreGain
+            }
+            else if (m_ScoreTeam1 == m_ScoreTeam2)
+            {
+                //Global Score team 2 && team 1 += m_scoregain
+            }
+        }
 
-	FindObjectOfType<AteliersManager> ().LaunchNext ();
-		this.gameObject.SetActive(false);
-}
+        if(m_Team1 && !m_Team2)
+        {
+            //Global Score Team 1 += m_GainPoints
+        }
+
+        if (!m_Team1 && m_Team2)
+        {
+            //Global Score Team 2 += m_GainPoints
+        }
+
+    }
 
 }

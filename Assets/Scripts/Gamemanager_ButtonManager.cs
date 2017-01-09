@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Gamemanager_ButtonManager : MonoBehaviour {
 
-    [SerializeField]
-    List<GameObject> m_GlobalListOfButton = new List<GameObject>();
+
+    public List<GameObject> m_GlobalListOfButton = new List<GameObject>();
 
 
     public List<GameObject> m_TeamOne = new List<GameObject>();
